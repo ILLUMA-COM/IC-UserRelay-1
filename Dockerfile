@@ -17,7 +17,10 @@ RUN apk --no-cache add curl \
 
 # Enable pnpm and fetch deps
 COPY package.json pnpm-lock.yaml ./
-RUN corepack enable && corepack prepare pnpm@latest --activate && pnpm fetch
+RUN corepack enable \
+  && corepack prepare pnpm@8.15.4 --activate \
+  && npm install -g pnpm \
+  && pnpm fetch
 
 # Copy source and build
 COPY . .
