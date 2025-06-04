@@ -24,7 +24,7 @@ RUN corepack enable \
 
 # Copy source and build
 COPY . .
-RUN pnpm install --frozen-lockfile --offline --no-optional \
+RUN pnpm install --frozen-lockfile \
   && pnpm run build \
   && pnpm --filter directus deploy --prod dist
 
