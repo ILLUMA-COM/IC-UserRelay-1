@@ -61,3 +61,4 @@ EXPOSE 8055
 
 # Start Agency OS Directus via PM2
 CMD ["pm2-runtime", "start", "ecosystem.config.cjs"]
+
