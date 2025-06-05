@@ -33,10 +33,6 @@ RUN cd dist \
   && node -e 'const fs=require("fs");const f="package.json",{name,version,type,exports,bin}=require(`./${f}`),{packageManager}=require(`../${f}`);fs.writeFileSync(f,JSON.stringify({name,version,type,exports,bin,packageManager},null,2));' \
   && mkdir -p extensions/uploads
 
-# Copy any required storage extensions
-RUN mkdir -p dist/extensions/storage/s3 \
-  && cp -r ./extensions/storage/s3 dist/extensions/storage/
-
 ##############################################
 ## 🚀 Runtime Stage — Run Agency OS
 FROM node:22-alpine AS runtime
@@ -61,4 +57,3 @@ EXPOSE 8055
 
 # Start Agency OS Directus via PM2
 CMD ["pm2-runtime", "start", "ecosystem.config.cjs"]
-
